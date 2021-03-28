@@ -1,0 +1,61 @@
+{
+	"name": "DS_SA_Source_PurchaseOrder_Dynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_StorageAccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SrcFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@{dataset().SrcFileName}",
+					"type": "Expression"
+				},
+				"container": "source"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PurchaseOrderID",
+				"type": "String"
+			},
+			{
+				"name": " CustomerCode",
+				"type": "String"
+			},
+			{
+				"name": "ProductCode",
+				"type": "String"
+			},
+			{
+				"name": "EmployeeCode",
+				"type": "String"
+			},
+			{
+				"name": " PuchaseOrderDate",
+				"type": "String"
+			},
+			{
+				"name": " Quantity",
+				"type": "String"
+			},
+			{
+				"name": " UnitPrice",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

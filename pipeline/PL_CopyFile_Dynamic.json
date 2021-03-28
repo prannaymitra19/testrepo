@@ -1,0 +1,160 @@
+{
+	"name": "PL_CopyFile_Dynamic",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy DynamicFile",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PurchaseOrderID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PurchaseOrderID",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": " CustomerCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": " CustomerCode",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ProductCode",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EmployeeCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "EmployeeCode",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": " PuchaseOrderDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": " PuchaseOrderDate",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": " Quantity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": " Quantity",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": " UnitPrice",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": " UnitPrice",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_SA_Source_PurchaseOrder_Dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"SrcFileName": "PurchaseOrder1.txt"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_SA_Target_PurchaseOrder_Dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"TrgFileName": "PurchaseOrder1.txt"
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-03-26T00:18:19Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

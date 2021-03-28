@@ -1,0 +1,32 @@
+{
+	"name": "DS_SA_Target_PurchaseOrder_Dynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_StorageAccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TrgFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@{dataset().TrgFileName}",
+					"type": "Expression"
+				},
+				"container": "target"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
